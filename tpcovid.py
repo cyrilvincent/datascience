@@ -30,3 +30,8 @@ if dcs_filter.shape == nbcas_filter.shape:
     letality = dcs_filter / nbcas_filter
 print(letality)
 print(f"Letality min: {np.min(letality)}, max: {np.max(letality)}")
+
+# Afficher les nbcas et dcs en superposition
+# Afficher la letalite dans un subplot en dessous
+# Sauvegarder letality dans un npz dans data
+# Recharger le npz
