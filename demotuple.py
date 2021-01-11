@@ -36,7 +36,7 @@ def per_dict(**kwargs):
         print(kwargs[param])
 
 
-def the_bordel(a,*kargs,**kwargs):
+def the_bordel(a, *kargs, **kwargs):
     print(a)
     print(kargs)
     print(kwargs)
