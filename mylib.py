@@ -62,3 +62,11 @@ if __name__ == '__main__':
     # fn = is_even
     # print(type(fn))
     # print(fn(8))
+    # Filtrer 2 fois range(100) pour trouver le nombre premier pair
+
+    res = filter(lambda x : x % 2 == 0, range(100))
+    res = filter(lambda x : is_prime(x), res)
+    print(list(res))
+
+    print(list(map(lambda x : x**2, filter(lambda x : is_prime(x), range(100)))))
+    print([x ** 2 for x in range(100) if is_prime(x)])
