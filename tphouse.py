@@ -21,10 +21,14 @@ with open("data/house/house.csv") as f:
         loyers.append(float(row["loyer"]))
 surfaces = np.array(surfaces)
 loyers = np.array(loyers)
+slope, intercept, rvalue, pvalue, _ = stats.linregress(surfaces, loyers)
+print(slope, intercept, rvalue, pvalue)
+f = lambda x : slope * x + intercept
 
 print(f"Loyer min:{np.min(loyers)}, max:{np.max(loyers)}, avg:{np.mean(loyers)}, std:{np.std(loyers)}, median:{np.median(loyers)}, quartiles:{np.quantile(loyers, [0.25,0.75])}")
 print(f"Surface min:{np.min(surfaces)}, max:{np.max(surfaces)}, avg:{np.mean(surfaces)}, std:{np.std(surfaces)}, median:{np.median(surfaces)}, quartiles:{np.quantile(surfaces, [0.25,0.75])}")
 plt.scatter(surfaces, loyers)
+plt.plot(np.arange(400), f(np.arange(400)), color="red")
 plt.show()
 
 loyersperm2 = loyers / surfaces
@@ -37,3 +41,13 @@ print(f"Loyerperm2_filter min:{np.min(loyersperm2_filter)}, max:{np.max(loyerspe
 plt.scatter(np.arange(len(loyersperm2_filter)), loyersperm2_filter)
 plt.show()
 
+surfaces_filter = surfaces[surfaces < 200]
+loyers_filter = loyers[surfaces < 200]
+filter = np.abs(loyers_filter - f(surfaces_filter)) < 3 * 10 * surfaces_filter
+surfaces_filter = surfaces_filter[filter]
+loyers_filter = loyers_filter[filter]
+slope, intercept, rvalue, pvalue, _ = stats.linregress(surfaces_filter, loyers_filter)
+print(slope, intercept, rvalue, pvalue)
+plt.scatter(surfaces_filter, loyers_filter)
+plt.plot(np.arange(200), f(np.arange(200)), color="red")
+plt.show()
