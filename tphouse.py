@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import scipy.stats as stats
 
 # Charger data/house/house.csv et créer les vecteurs surfaces, loyers
 # Afficher le nuage de points surface / loyer
