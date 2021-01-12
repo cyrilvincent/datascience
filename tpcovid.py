@@ -1,5 +1,7 @@
 import csv
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 ixs = []
 nbcas = []
@@ -30,6 +32,20 @@ if dcs_filter.shape == nbcas_filter.shape:
     letality = dcs_filter / nbcas_filter
 print(letality)
 print(f"Letality min: {np.min(letality)}, max: {np.max(letality)}")
+
+plt.subplot(211)
+plt.yscale("log")
+plt.plot(nbcas_filter)
+plt.plot(dcs_filter)
+
+plt.subplot(212)
+plt.bar(ixs_filter, letality)
+plt.show()
+
+np.savez("data/covid/letality.npz", letality=letality)
+letality = None
+letality = np.load("data/covid/letality.npz")["letality"]
+print(letality)
 
 # Afficher les nbcas et dcs en superposition
 # Afficher la letalite dans un subplot en dessous
