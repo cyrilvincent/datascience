@@ -8,10 +8,13 @@ cube = np.asarray(im)
 print(cube.shape)
 red = cube[:,:,0]
 print(np.min(red), np.max(red), np.mean(red), np.std(red))
-red_modified = red - 20
-red_modified = np.clip(255,0,red_modified)
-
-im = Image.fromarray(red_modified).convert("RGB")
+nb = cube.mean(axis=2)
+print(np.min(nb), np.max(nb), np.mean(nb), np.std(nb))
+delta = np.mean(nb) - 127.5
+delta_std = np.abs(np.std(nb) - 63.75)
+nb = (nb - delta) * 63.75 / delta_std
+nb = np.clip(nb, 0, 255)
+im = Image.fromarray(nb).convert("RGB")
 im.save("data/img/modified.jpg")
 
 # TP
