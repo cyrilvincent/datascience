@@ -10,6 +10,7 @@ print(sklearn.__version__)
 dataset = pd.read_csv("data/house/house.csv")
 x = dataset.surface.values.reshape(-1,1)
 y = dataset.loyer
+np.random.seed(155)
 
 def predict(model):
     model.fit(x, y)
@@ -20,7 +21,7 @@ def predict(model):
 
 if __name__ == '__main__':
     #model = lm.LinearRegression()
-    model = pipe.make_pipeline(pp.PolynomialFeatures(3), lm.Ridge())
+    model = pipe.make_pipeline(pp.PolynomialFeatures(8), lm.Ridge())
     predict(model)
 
 
