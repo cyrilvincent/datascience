@@ -36,6 +36,7 @@ trained = model.fit(x_train, y_train, epochs=20, batch_size=1,validation_data=(x
 print(model.summary())
 
 predicted = model.predict(x_test)
+model.save("data/mnist/mnist.h5")
 import matplotlib.pyplot as plt
 # Gestion des erreurs
 # on récupère les données mal prédites

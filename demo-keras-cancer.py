@@ -23,8 +23,10 @@ model = keras.Sequential([
     keras.layers.Dense(1, activation="sigmoid")
   ])
 
-model.compile(loss="binary_crossentropy", optimizer="rmsprop",metrics=['accuracy'])
+optimizer = keras.optimizers.SGD(nesterov=True, lr=1e-4)
+model.compile(loss="binary_crossentropy", optimizer=optimizer,metrics=['accuracy'])
 model.summary()
 
 model.fit(xtrain, ytrain, epochs=200, validation_split=0.2)
 print(model.evaluate(xtrain, ytrain))
+model.save("data/breast-cancer/cancer-mlp.h5")
