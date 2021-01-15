@@ -28,5 +28,3 @@ model.summary()
 
 model.fit(xtrain, ytrain, epochs=200, validation_split=0.2)
 print(model.evaluate(xtrain, ytrain))
-
-fnorm = lambda x, avg, std : (x - avg) / std
