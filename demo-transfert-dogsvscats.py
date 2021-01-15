@@ -1,7 +1,6 @@
-import tensorflow as tf
 import tensorflow.keras as keras
 
-model = keras.applications.vgg16.VGG16(weights="imagenet", input_shape=(224, 224, 3))
+model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
 
 for layer in model.layers[:19]:
     layer.trainable = False
@@ -14,13 +13,14 @@ x = keras.layers.Dense(128, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
 x =  keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
-x = keras.layers.Dense(1, activation="sigmoid")(x)
+#x = keras.layers.Dense(1, activation="sigmoid")(x)
+x = keras.layers.Dense(3, activation="softmax")(x)
 
 model = keras.models.Model(inputs=model.input, outputs=x)
 
 model.summary()
 
-model.compile(loss='binary_crossentropy',
+model.compile(loss='categorical_crossentropy', #'binary_crossentropy',
               optimizer="rmsprop",
               metrics=['accuracy'])
 
@@ -29,16 +29,16 @@ trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, valida
 batchSize = 16
 
 trainGenerator = trainset.flow_from_directory(
-        'data/dogsvscats',
+        'data/dogsvscats/train',
         target_size=(224, 224),
         subset = 'training',
-        class_mode="binary",
+        class_mode="categorical",
         batch_size=batchSize)
 
 validationGenerator = trainset.flow_from_directory(
-        'data/dogsvscats',
+        'data/dogsvscats/train',
         target_size=(224, 224),
-        class_mode="binary",
+        class_mode="categorical",
         subset = 'validation',
         batch_size=batchSize)
 
@@ -48,8 +48,7 @@ model.fit(
         validation_data=validationGenerator,
 )
 
-model.save('data/dogsvscats/vgg16model-small.h5')
-model.save_weights('data/dogsvscats/vgg16model-weights-small.h5')
+model.save('data/dogsvscats/vgg16model-cows.h5')
 
 
 
