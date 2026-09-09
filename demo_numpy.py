@@ -28,3 +28,25 @@ print(np.ndim(a1), a1.shape, a1.size, a1.dtype)
 a5 = np.array([0,1,254,255], np.uint8)
 print(a5 + 1)
 print(a5 - 1)
+
+print(a1)
+
+for value in a1:
+    print(value)
+
+for i in range(len(a1)):
+    print(a1[i])
+
+print(a1[2:-2]) # De l'index 1 à l'index 3 non inclu
+
+a5 = np.arange(-2 * np.pi, 2 * np.pi, 0.1)
+print(a5)
+print(a5[a5 > 0])
+print(a5[np.sin(a5) > 0])
+
+a6 = a5[np.sin(a5) > 0]
+np.savez("a6.npz", a6=a6)
+
+keys = np.load("a6.npz")
+print(keys)
+print(keys["a6"])
