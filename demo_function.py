@@ -14,5 +14,8 @@ def is_prime(n: int) -> bool:
             return False
     return True
 
+f = lambda x, y: x + y
+print(f(2,3))
 
-print(is_prime(7), is_prime(9))
+f = lambda x: x + 1
+print(f(1))
