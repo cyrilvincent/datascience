@@ -42,6 +42,6 @@ print(f"Test score: {model.score(xtest, ytest)}")
 ypred = model.predict(xtest)
 print(ypred)
 
-# with open(f"data/breast-cancer/svm-{model.score(xtest, ytest):.2f}.pkl", "wb") as f:
-#     pickle.dump([scaler, model], f)
+with open(f"data/breast-cancer/rf-{model.score(xtest, ytest):.2f}.pkl", "wb") as f:
+    pickle.dump([scaler, model], f)
 
