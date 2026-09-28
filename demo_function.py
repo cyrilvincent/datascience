@@ -24,10 +24,10 @@ def is_prime(n: int) -> bool:
         return True
 
 
-
-result = add(3, 2)
-result = add(y=2, x=3)
-print(result)
-print(factorielle(n=5))
-print(is_prime(5))
+if __name__ == '__main__':
+    result = add(3, 2)
+    result = add(y=2, x=3)
+    print(result)
+    print(factorielle(n=5))
+    print(is_prime(5))
 

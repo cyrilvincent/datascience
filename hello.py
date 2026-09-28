@@ -1,3 +1,7 @@
+import demo_function as f
+
+print(f.factorielle(5))
+
 print("Hello")
 
 # Factorielle
