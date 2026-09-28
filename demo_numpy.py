@@ -26,3 +26,10 @@ print(a10[:-3])
 print(a10[2:])
 print(a10[2::2])
 print(a10[7:2:-2])
+
+rnd = np.random.rand(10)
+print(rnd)
+print(rnd[rnd > 0.5])
+filter = rnd > 0.5
+print(rnd[filter])
+print(filter)
