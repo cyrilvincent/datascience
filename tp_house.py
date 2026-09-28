@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 data = np.load("data/house/house.npz")
 print(data)
@@ -28,10 +29,25 @@ loyer_m2_std = np.std(loyer_m2)
 print(loyer_m2_std)
 print(loyers[loyers > loyer_m2_mean * surfaces + 3 * loyer_m2_std * surfaces])
 
-
+plt.subplot(2,2,1)
+plt.scatter(surfaces, loyers)
+x = np.arange(400)
+y = x * loyer_m2_mean
+plt.plot(x, y, color="red")
+plt.subplot(2,2,2)
+plt.bar(np.arange(20), np.histogram(surfaces, bins=20)[0])
+plt.subplot(2,2,3)
+plt.hist(loyers, bins=20)
+plt.subplot(2,2,4)
+plt.hist(loyer_m2, bins=20)
+plt.show()
 # Afficher le nuage de point surface vs loyer
 # bonus : rendre jolie
 # Afficher l'histogram np.histogram(surfaces, bins=10) des surfaces, loyers et loyer_m2
 # Mettre tout celà dans un subplot 2x2
 # Grâce au loyer_m2_mean afficher un plot x = np.arange(400) y = x * loyer_m2_mean
 # Bonus faire la même chose pour 1 std, 2 std, 3 std
+
+
+
+
