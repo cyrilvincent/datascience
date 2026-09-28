@@ -14,3 +14,16 @@ print(loyers)
 # Afficher les loyers dont les surfaces > 200
 # Afficher les loyers > loyer au m² moyen * surfaces
 # Bonus : Ecart type = np.std, afficher les loyers > loyer moyen au m² * surfaces + 3 std
+
+print(np.min(loyers), loyers.max())
+loyer_m2 = loyers / surfaces
+print(loyer_m2)
+loyer_m2_mean = np.mean(loyer_m2)
+print(loyer_m2_mean)
+filter = surfaces > 200
+print(surfaces[filter])
+print(loyers[filter])
+print(loyers[loyers > loyer_m2_mean * surfaces])
+loyer_m2_std = np.std(loyer_m2)
+print(loyer_m2_std)
+print(loyers[loyers > loyer_m2_mean * surfaces + 3 * loyer_m2_std * surfaces])
