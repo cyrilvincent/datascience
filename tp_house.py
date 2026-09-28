@@ -33,7 +33,13 @@ plt.subplot(2,2,1)
 plt.scatter(surfaces, loyers)
 x = np.arange(400)
 y = x * loyer_m2_mean
+y1std = y + loyer_m2_std * x
+y2std = y + loyer_m2_std * x * 2
+y3std = y + loyer_m2_std * x * 3
 plt.plot(x, y, color="red")
+plt.plot(x, y1std, color="yellow")
+plt.plot(x, y2std, color="green")
+plt.plot(x, y3std, color="black")
 plt.subplot(2,2,2)
 plt.bar(np.arange(20), np.histogram(surfaces, bins=20)[0])
 plt.subplot(2,2,3)
